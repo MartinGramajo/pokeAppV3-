@@ -4,7 +4,7 @@ import { getPokemons } from "../slices/pokeSlice";
 import CardPokemon from "./CardPokemon";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import pokedex from "../assets/pokedex.png";
-import detalle from "../assets/detalle.png";
+import flecha from "../assets/flechaTop.png";
 
 const ListaPokemon = () => {
   const dispatch = useDispatch();
@@ -150,8 +150,7 @@ const ListaPokemon = () => {
       {content}
       {isVisible && (
         <Button onClick={scrollToTop} className="scroll-to-top btn-scroll-top">
-          <img className="me-3" src={detalle} alt="poke detalle" />
-          Ir al Top
+          <img className="me-3" src={flecha} alt="flecha top" />
         </Button>
       )}
     </div>

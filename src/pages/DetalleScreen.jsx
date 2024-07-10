@@ -240,10 +240,10 @@ const DetalleScreen = () => {
           <h6 className="fs-32">
             #{pokemonUnico.id} {pokemonUnico.name}
           </h6>
-          <h5>{iconTipo()}</h5>
+          <h5 className="mt-3">{iconTipo()}</h5>
         </article>
         <article>
-          <div className="d-flex flex-wrap  justify-content-center py-4">
+          <div className="d-flex flex-wrap  justify-content-center pb-4">
             <div className="card-pokemon">
               <img
                 style={{ width: "300px", height: "300px" }}
@@ -272,14 +272,14 @@ const DetalleScreen = () => {
                 alt={pokemonUnico.name}
               />
             </div>
-            <h6 className=" fs-18">{pokemonUnico.species.description}</h6>
+            <h6 className=" fs-18 py-2">{pokemonUnico.species.description}</h6>
           </div>
         </article>
         <article>
           <h6 className="fs-32 text-center my-4">Estadísticas base</h6>
           <div>
             <div className="d-flex justify-content-center">
-              <article className="d-none d-lg-block">
+              <article className="d-none d-lg-block pb-5">
                 <BarChart width={1000} height={400} data={data}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="name" />
