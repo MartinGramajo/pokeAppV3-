@@ -272,3 +272,15 @@
   border: none !important;
   font-weight: bold !important;
 }
+
+/* boton para ir al top de la pagina */
+.btn-scroll-top {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  border-radius: 50%;
+  padding: 10px;
+  background-color: #ff0606 !important;
+  color: #fff;
+  border: none !important;
+}

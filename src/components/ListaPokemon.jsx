@@ -4,6 +4,7 @@ import { getPokemons } from "../slices/pokeSlice";
 import CardPokemon from "./CardPokemon";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import pokedex from "../assets/pokedex.png";
+import detalle from "../assets/detalle.png";
 
 const ListaPokemon = () => {
   const dispatch = useDispatch();
@@ -11,13 +12,13 @@ const ListaPokemon = () => {
   const [filtroNombre, setFiltroNombre] = useState("");
   const [tipos, setTipos] = useState([]);
   const [limite, setLimite] = useState(20);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     dispatch(getPokemons());
   }, [dispatch]);
 
   const listaPokemons = useSelector((state) => state.pokemon.pokemons);
-  console.log("ListaPokemon ~ listaPokemons:", listaPokemons);
   const status = useSelector((state) => state.pokemon.status);
   const error = useSelector((state) => state.error);
 
@@ -42,6 +43,26 @@ const ListaPokemon = () => {
   const handleLoadMore = () => {
     setLimite((prevLimite) => prevLimite + 20);
   };
+
+  const toggleVisibility = () => {
+    if (window.pageYOffset > 300) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
 
   let content;
 
@@ -124,7 +145,17 @@ const ListaPokemon = () => {
     content = <p>{error}</p>;
   }
 
-  return <div className="py-4">{content}</div>;
+  return (
+    <div className="py-4">
+      {content}
+      {isVisible && (
+        <Button onClick={scrollToTop} className="scroll-to-top btn-scroll-top">
+          <img className="me-3" src={detalle} alt="poke detalle" />
+          Ir al Top
+        </Button>
+      )}
+    </div>
+  );
 };
 
 export default ListaPokemon;
