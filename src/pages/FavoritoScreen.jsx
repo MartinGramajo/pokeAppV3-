@@ -5,7 +5,6 @@ import noEncontrado from "../assets/sinRegistrar.jpg";
 
 const FavoritoScreen = () => {
   const favoritos = useSelector((state) => state.pokemon.favoritos);
-
   const dispatch = useDispatch();
 
   const handleRemoverDeFavorito = (id) => {
@@ -13,7 +12,7 @@ const FavoritoScreen = () => {
   };
 
   return (
-    <div className="container d-flex flex-wrap">
+    <div className="container d-flex flex-wrap justify-content-center">
       {favoritos.length > 0 ? (
         favoritos.map((favorito) => (
           <Card
@@ -36,13 +35,15 @@ const FavoritoScreen = () => {
                 {favorito.types.join(", ")}
               </Card.Text>
             </Card.Body>
-            <Button
-              className="pokemon-type border-0"
-              onClick={() => handleRemoverDeFavorito(favorito.id)}
-              style={{ cursor: "pointer" }}
-            >
-              Quitar de favoritos
-            </Button>
+            <div className="d-flex justify-content-center pb-4">
+              <Button
+                className="btn-detalle-pokemon border-0"
+                onClick={() => handleRemoverDeFavorito(favorito.id)}
+                style={{ cursor: "pointer" }}
+              >
+                Quitar de favoritos
+              </Button>
+            </div>
           </Card>
         ))
       ) : (
@@ -58,11 +59,6 @@ const FavoritoScreen = () => {
                 className="pokemon-image-home"
               />
             </div>
-            <Card.Body className="text-center">
-              <Card.Title className="pokemon-name">
-                No hay registros de un fav.
-              </Card.Title>
-            </Card.Body>
           </Card>
         </section>
       )}
