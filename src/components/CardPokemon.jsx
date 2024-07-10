@@ -21,7 +21,7 @@ export default function CardPokemon({ pokemon }) {
   };
 
   return (
-    <div>
+    <div className="py-4">
       <Card className={`my-2 mx-3 card-pokemon ${pokemon.types[0]}`}>
         <div className="d-flex justify-content-between">
           <span className="hp"># {pokemon.id}</span>
