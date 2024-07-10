@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { agregarEnFavorito, removerDeFavorito } from "../slices/pokeSlice";
 import starEmpty from "../assets/starEmpty.svg";
 import starFilled from "../assets/starFilled.svg";
+import detalle from "../assets/detalle.png";
 
 export default function CardPokemon({ pokemon }) {
   const dispatch = useDispatch();
@@ -56,13 +57,16 @@ export default function CardPokemon({ pokemon }) {
             </h6>
           </div>
         </section>
-        <Button
-          className="pokemon-type border-0 mt-4"
-          as={Link}
-          to={`detalle/${pokemon.name}`}
-        >
-          Ver detalle
-        </Button>
+        <section className="py-4">
+          <Button
+            className="btn-detalle-pokemon border-0 mt-4"
+            as={Link}
+            to={`detalle/${pokemon.name}`}
+          >
+            <img className="me-3" src={detalle} alt="poke detalle" />
+            Ver detalle
+          </Button>
+        </section>
       </Card>
     </div>
   );

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPokemons } from "../slices/pokeSlice";
 import CardPokemon from "./CardPokemon";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import pokedex from "../assets/pokedex.png";
 
 const ListaPokemon = () => {
   const dispatch = useDispatch();
@@ -108,8 +109,9 @@ const ListaPokemon = () => {
 
         {limitarPokemons.length < filtradoPokemons.length && (
           <div className="text-center mt-3">
-            <Button variant="primary" onClick={handleLoadMore}>
-              Cargar más
+            <Button className="btn-cargar-pokemon" onClick={handleLoadMore}>
+              <img className="w-25" src={pokedex} alt="poke loader gif" /> Ver
+              más
             </Button>
           </div>
         )}
