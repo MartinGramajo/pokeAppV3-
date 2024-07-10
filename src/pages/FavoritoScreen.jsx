@@ -11,7 +11,7 @@ const FavoritoScreen = () => {
   };
 
   return (
-    <div className="container pt-5">
+    <div className="container pt-5 d-flex justify-content-center flex-wrap">
       {favoritos.length > 0 ? (
         favoritos.map((favorito) => (
           <Card
