@@ -1,7 +1,6 @@
 import { Button, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { removerDeFavorito } from "../slices/pokeSlice";
-import noEncontrado from "../assets/sinRegistrar.jpg";
 
 const FavoritoScreen = () => {
   const favoritos = useSelector((state) => state.pokemon.favoritos);
@@ -12,7 +11,7 @@ const FavoritoScreen = () => {
   };
 
   return (
-    <div className="container d-flex flex-wrap justify-content-center">
+    <div className="container pt-5">
       {favoritos.length > 0 ? (
         favoritos.map((favorito) => (
           <Card
@@ -47,19 +46,24 @@ const FavoritoScreen = () => {
           </Card>
         ))
       ) : (
-        <section className="d-flex justify-content-center">
-          <Card className={`my-2 mx-3 card-pokemon`}>
-            <div className="d-flex justify-content-between">
-              <span className="hp"># ???</span>
-            </div>
-            <div className="pokemon-image-home">
-              <Card.Img
-                variant="top"
-                src={noEncontrado}
-                className="pokemon-image-home"
-              />
-            </div>
-          </Card>
+        <section className="pt-5">
+          <div className="d-flex justify-content-center">
+            <Card className={`my-2 mx-3 card-pokemon`}>
+              <div className="d-flex justify-content-between">
+                <span className="hp"># ???</span>
+              </div>
+              <div className="pokemon-image-home">
+                <Card.Img
+                  variant="top"
+                  src="https://as01.epimg.net/epik/imagenes/2018/11/16/portada/1542384053_864693_1542384302_noticia_normal.jpg"
+                  className="pokemon-image-home"
+                />
+              </div>
+            </Card>
+          </div>
+          <section className="py-5 text-center">
+            <h6 className=" fs-22"> Todavía no se registraron favoritos</h6>
+          </section>
         </section>
       )}
     </div>
