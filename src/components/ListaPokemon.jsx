@@ -132,8 +132,9 @@ const ListaPokemon = () => {
               />
               <Card.Body>
                 <Card.Title>Pokemon no encontrado</Card.Title>
-                <Card.Text>
-                  No se encontraron Pokémon que coincidan con la busqueda.
+                <Card.Text className="h6">
+                  No se encontraron Pokémon que coincidan con la busqueda. Por
+                  favor ingresa otra busqueda
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -201,9 +202,11 @@ const ListaPokemon = () => {
     <div className="py-4">
       {content}
       {isVisible && (
-        <Button onClick={scrollToTop} className="scroll-to-top btn-scroll-top">
-          <img className="me-3" src={flecha} alt="flecha top" />
-        </Button>
+        <div className="fixed-bottom d-flex justify-content-end">
+          <Button onClick={scrollToTop} className=" btn-scroll-top">
+            <img className="me-3" src={flecha} alt="flecha top" />
+          </Button>
+        </div>
       )}
     </div>
   );
