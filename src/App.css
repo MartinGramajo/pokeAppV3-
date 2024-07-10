@@ -2,6 +2,12 @@
   background-color: #f5c556;
 }
 
+.text-color-app {
+  color: #f5c556;
+  font-size: 18px;
+  font-weight: bold;
+}
+
 .fs-22 {
   font-size: 22px !important;
 }
@@ -201,4 +207,9 @@
     width: 320px !important;
     height: 320px !important;
   }
+}
+
+/* estrella fav */
+.estrella-favorito {
+  width: 20px;
 }

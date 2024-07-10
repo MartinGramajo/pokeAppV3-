@@ -1,14 +1,22 @@
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
-import { useDispatch } from "react-redux";
-import { agregarEnFavorito } from "../slices/pokeSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { agregarEnFavorito, removerDeFavorito } from "../slices/pokeSlice";
+import starEmpty from "../assets/starEmpty.svg";
+import starFilled from "../assets/starFilled.svg";
 
 export default function CardPokemon({ pokemon }) {
   const dispatch = useDispatch();
+  const favoritos = useSelector((state) => state.pokemon.favoritos);
 
-  const handleAgregarEnFavorito = (id) => {
-    dispatch(agregarEnFavorito(id));
+  const esFavorito = favoritos.some((fav) => fav.id === pokemon.id);
+
+  const handleFavoritoClick = () => {
+    if (esFavorito) {
+      dispatch(removerDeFavorito(pokemon.id));
+    } else {
+      dispatch(agregarEnFavorito(pokemon.id));
+    }
   };
 
   return (
@@ -25,22 +33,31 @@ export default function CardPokemon({ pokemon }) {
           />
         </div>
         <Card.Body className="text-center">
-          <Card.Title className="pokemon-name">
-            <span
-              className="favoritos"
-              onClick={() => handleAgregarEnFavorito(pokemon.id)}
-              style={{ cursor: "pointer" }}
-            >
-              agregar en fav
-            </span>
-            {pokemon.name}
-          </Card.Title>
+          <Card.Title className="pokemon-name ">{pokemon.name}</Card.Title>
           <Card.Text className="pokemon-type">
             {pokemon.types.join(", ")}
           </Card.Text>
         </Card.Body>
+        <section className="d-flex  justify-content-center">
+          <Button
+            className=""
+            onClick={handleFavoritoClick}
+            style={{ cursor: "pointer", background: "none", border: "none" }}
+          >
+            <img
+              className="estrella-favorito"
+              src={esFavorito ? starFilled : starEmpty}
+              alt={esFavorito ? "Remover de favoritos" : "Agregar a favoritos"}
+            />{" "}
+          </Button>
+          <div className="mt-2">
+            <h6>
+              {esFavorito ? "Remover de favoritos" : "Agregar a favoritos"}
+            </h6>
+          </div>
+        </section>
         <Button
-          className="pokemon-type border-0"
+          className="pokemon-type border-0 mt-4"
           as={Link}
           to={`detalle/${pokemon.name}`}
         >

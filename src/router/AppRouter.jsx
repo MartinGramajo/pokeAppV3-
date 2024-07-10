@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomeScreen from "../pages/HomeScreen";
 import DetalleScreen from "../pages/DetalleScreen";
 import NavReact from "../common/NavReact";
+import FavoritoScreen from "../pages/FavoritoScreen";
 
 const AppRouter = () => {
   return (
@@ -11,6 +12,7 @@ const AppRouter = () => {
         <Routes>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/detalle/:name" element={<DetalleScreen />} />
+          <Route path="/favoritos" element={<FavoritoScreen />} />
         </Routes>
       </BrowserRouter>
     </section>
