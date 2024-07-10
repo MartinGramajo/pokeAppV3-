@@ -20,9 +20,13 @@ const NavReact = () => {
             </Link>
           </div>
         </section>
+
         <div>
+          <Link className="text-decoration-none text-color-app me-4" to="/">
+            Home
+          </Link>
           <Link className="text-decoration-none text-color-app" to="/favoritos">
-            Ir Favoritos ({favoritos.length})
+            Favoritos ({favoritos.length})
           </Link>
         </div>
       </Container>
