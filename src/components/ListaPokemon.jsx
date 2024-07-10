@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemons } from "../slices/pokeSlice";
 import CardPokemon from "./CardPokemon";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import pokedex from "../assets/pokedex.png";
 import flecha from "../assets/flechaTop.png";
+import noEncontrado from "../assets/sinRegistrar.jpg";
 
 const ListaPokemon = () => {
   const dispatch = useDispatch();
@@ -90,57 +91,108 @@ const ListaPokemon = () => {
     }
     const limitarPokemons = filtradoPokemons.slice(0, limite);
 
-    content = (
-      <>
-        <section className="container d-flex flex-wrap justify-content-around pb-4">
-          <Form.Group controlId="filtroNombre">
-            <Form.Label className="fs-18">Buscar por pokemon</Form.Label>
-            <Form.Control
-              type="text"
-              className="input-buscar"
-              placeholder="Buscar"
-              value={filtroNombre}
-              onChange={handleNombreChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="filtroTipo">
-            <Form.Label className="fs-18">Filtrar por tipo</Form.Label>
-            <Form.Control
-              className="input-buscar"
-              as="select"
-              value={filtroTipo}
-              onChange={handleTipoChange}
-            >
-              <option value="">Todos</option>
-              {tipos.map((tipo, index) => (
-                <option key={index} value={tipo}>
-                  {tipo}
-                </option>
+    if (limitarPokemons.length === 0) {
+      content = (
+        <>
+          <section className="container d-flex flex-wrap justify-content-around pb-4">
+            <Form.Group controlId="filtroNombre">
+              <Form.Label className="fs-18">Buscar por pokemon</Form.Label>
+              <Form.Control
+                type="text"
+                className="input-buscar"
+                placeholder="Buscar"
+                value={filtroNombre}
+                onChange={handleNombreChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="filtroTipo">
+              <Form.Label className="fs-18">Filtrar por tipo</Form.Label>
+              <Form.Control
+                className="input-buscar"
+                as="select"
+                value={filtroTipo}
+                onChange={handleTipoChange}
+              >
+                <option value="">Todos</option>
+                {tipos.map((tipo, index) => (
+                  <option key={index} value={tipo}>
+                    {tipo}
+                  </option>
+                ))}
+              </Form.Control>
+            </Form.Group>
+          </section>
+
+          <section className="d-flex justify-content-center">
+            <Card className="my-3 mx-3 card-pokemon">
+              <Card.Img
+                variant="top"
+                src={noEncontrado}
+                className="pokemon-image-home"
+              />
+              <Card.Body>
+                <Card.Title>Pokemon no encontrado</Card.Title>
+                <Card.Text>
+                  No se encontraron Pokémon que coincidan con la busqueda.
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </section>
+        </>
+      );
+    } else {
+      content = (
+        <>
+          <section className="container d-flex flex-wrap justify-content-around pb-4">
+            <Form.Group controlId="filtroNombre">
+              <Form.Label className="fs-18">Buscar por pokemon</Form.Label>
+              <Form.Control
+                type="text"
+                className="input-buscar"
+                placeholder="Buscar"
+                value={filtroNombre}
+                onChange={handleNombreChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="filtroTipo">
+              <Form.Label className="fs-18">Filtrar por tipo</Form.Label>
+              <Form.Control
+                className="input-buscar"
+                as="select"
+                value={filtroTipo}
+                onChange={handleTipoChange}
+              >
+                <option value="">Todos</option>
+                {tipos.map((tipo, index) => (
+                  <option key={index} value={tipo}>
+                    {tipo}
+                  </option>
+                ))}
+              </Form.Control>
+            </Form.Group>
+          </section>
+
+          <Container>
+            <Row xs={1} lg={3} md={2} sm={1}>
+              {limitarPokemons.map((pokemon, id) => (
+                <Col className="d-flex justify-content-center" key={id}>
+                  <CardPokemon pokemon={pokemon} />
+                </Col>
               ))}
-            </Form.Control>
-          </Form.Group>
-        </section>
+            </Row>
+          </Container>
 
-        <Container>
-          <Row xs={1} lg={3} md={2} sm={1}>
-            {limitarPokemons.map((pokemon, id) => (
-              <Col className="d-flex justify-content-center" key={id}>
-                <CardPokemon pokemon={pokemon} />
-              </Col>
-            ))}
-          </Row>
-        </Container>
-
-        {limitarPokemons.length < filtradoPokemons.length && (
-          <div className="text-center mt-3">
-            <Button className="btn-cargar-pokemon" onClick={handleLoadMore}>
-              <img className="w-25" src={pokedex} alt="poke loader gif" /> Ver
-              más
-            </Button>
-          </div>
-        )}
-      </>
-    );
+          {limitarPokemons.length < filtradoPokemons.length && (
+            <div className="text-center mt-3">
+              <Button className="btn-cargar-pokemon" onClick={handleLoadMore}>
+                <img className="w-25" src={pokedex} alt="poke loader gif" /> Ver
+                más
+              </Button>
+            </div>
+          )}
+        </>
+      );
+    }
   } else if (status === "Rechazado") {
     content = <p>{error}</p>;
   }
