@@ -31,6 +31,13 @@
   width: 350px !important;
 }
 
+@media (max-width: 368px) {
+  .input-buscar {
+    border-radius: 40px !important;
+    width: 300px !important;
+  }
+}
+
 .card-pokemon {
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.914);
@@ -305,8 +312,8 @@
 /* boton para ir al top de la pagina */
 .btn-scroll-top {
   position: fixed;
-  bottom: 50px;
-  right: 50px;
+  bottom: 20px;
+  right: 0px;
   background-color: transparent !important;
   border: none !important;
 }
