@@ -33,7 +33,7 @@
 
 .card-pokemon {
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.498);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.914);
   text-align: center;
   margin: 1rem;
   overflow: hidden;
@@ -53,27 +53,50 @@
   border-radius: 10px;
   width: 18rem !important;
   border: none !important;
+  transition: all 0.9s;
 }
 
 .card-pokemon:hover {
   transform: scale(1.2);
-  transition: all 0.5s;
 }
 
 .metallic-card {
-  background: rgb(119, 108, 187);
-  background: -moz-linear-gradient(90deg, rgba(119, 108, 187, 1) 0%, rgba(119, 108, 187, 1) 50%, rgba(0, 0, 0, 1) 100%);
-  background: -webkit-linear-gradient(
-    90deg,
-    rgba(119, 108, 187, 1) 0%,
-    rgba(119, 108, 187, 1) 50%,
-    rgba(0, 0, 0, 1) 100%
-  );
-  background: linear-gradient(90deg, rgba(119, 108, 187, 1) 0%, rgba(119, 108, 187, 1) 50%, rgba(0, 0, 0, 1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#776cbb",endColorstr="#000000",GradientType=1);
+  background: linear-gradient(270deg, #ffcb05, #3b4cca, #ff0000, #3b4cca, #ffcb05);
+  background-size: 1000% 1000%;
+  animation: holo-gradient 20s ease infinite;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.metallic-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 200%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: skewX(-20deg);
+  transition: all 0.5s ease;
+}
+
+.metallic-card:hover::before {
+  left: 125%;
+}
+
+@keyframes holo-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .hp {

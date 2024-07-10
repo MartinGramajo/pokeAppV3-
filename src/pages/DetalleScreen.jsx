@@ -233,6 +233,25 @@ const DetalleScreen = () => {
     { name: "altura", value: altura, fill: "#253732" },
   ];
 
+  const sprites = [
+    {
+      src: pokemonUnico.sprites.front_default,
+      alt: `${pokemonUnico.name} front default`,
+    },
+    {
+      src: pokemonUnico.sprites.back_default,
+      alt: `${pokemonUnico.name} back default`,
+    },
+    {
+      src: pokemonUnico.sprites.front_shiny,
+      alt: `${pokemonUnico.name} front shiny`,
+    },
+    {
+      src: pokemonUnico.sprites.back_shiny,
+      alt: `${pokemonUnico.name} back shiny`,
+    },
+  ];
+
   return (
     <Container>
       <section className="pt-4">
@@ -243,40 +262,25 @@ const DetalleScreen = () => {
           <h5 className="mt-3">{iconTipo()}</h5>
         </article>
         <article>
-          <div className="d-flex flex-wrap  justify-content-center pb-4">
-            <div className="card-pokemon">
-              <img
-                style={{ width: "300px", height: "300px" }}
-                src={pokemonUnico.sprites.front_default}
-                alt={pokemonUnico.name}
-              />
-            </div>
-            <div className="card-pokemon">
-              <img
-                style={{ width: "300px", height: "300px" }}
-                src={pokemonUnico.sprites.back_default}
-                alt={pokemonUnico.name}
-              />
-            </div>
-            <div className="card-pokemon">
-              <img
-                style={{ width: "300px", height: "300px" }}
-                src={pokemonUnico.sprites.front_shiny}
-                alt={pokemonUnico.name}
-              />
-            </div>
-            <div className="card-pokemon">
-              <img
-                style={{ width: "300px", height: "300px" }}
-                src={pokemonUnico.sprites.back_shiny}
-                alt={pokemonUnico.name}
-              />
-            </div>
-            <h6 className=" fs-18 py-2">{pokemonUnico.species.description}</h6>
+          <div className="d-flex flex-wrap justify-content-center pb-4">
+            {sprites.map((sprite, index) => (
+              <div className="metallic-card mx-2 my-2" key={index}>
+                <img
+                  style={{ width: "250px", height: "250px" }}
+                  src={sprite.src}
+                  alt={sprite.alt}
+                />
+              </div>
+            ))}
           </div>
         </article>
         <article>
-          <h6 className="fs-32 text-center my-4">Estadísticas base</h6>
+          <h6 className="fs-32 text-center my-4">Info del pokemon </h6>
+          <h6 className=" fs-18 py-2 text-center">
+            {pokemonUnico.species.description}
+          </h6>
+        </article>
+        <article className="mt-4">
           <div>
             <div className="d-flex justify-content-center">
               <article className="d-none d-lg-block pb-5">
