@@ -13,24 +13,7 @@ import {
   Legend,
 } from "recharts";
 
-import bugIcon from "../assets/icon/bug.svg";
-import darkIcon from "../assets/icon/dark.svg";
-import dragonIcon from "../assets/icon/dragon.svg";
-import electricIcon from "../assets/icon/electric.svg";
-import fairyIcon from "../assets/icon/fairy.svg";
-import fightingIcon from "../assets/icon/fighting.svg";
-import fireIcon from "../assets/icon/fire.svg";
-import flyingIcon from "../assets/icon/flying.svg";
-import ghostIcon from "../assets/icon/ghost.svg";
-import grassIcon from "../assets/icon/grass.svg";
-import groundIcon from "../assets/icon/ground.svg";
-import iceIcon from "../assets/icon/ice.svg";
-import normalIcon from "../assets/icon/normal.svg";
-import poisonIcon from "../assets/icon/poison.svg";
-import psychicIcon from "../assets/icon/psychic.svg";
-import rockIcon from "../assets/icon/rock.svg";
-import steelIcon from "../assets/icon/steel.svg";
-import waterIcon from "../assets/icon/water.svg";
+import { iconTipo } from "../helpers/iconTipo";
 
 const DetalleScreen = () => {
   const { name } = useParams();
@@ -55,157 +38,7 @@ const DetalleScreen = () => {
   }
 
   const primaryType = pokemonUnico.types[0].type.name;
-
-  const iconTipo = () => {
-    switch (primaryType) {
-      case "bug":
-        return (
-          <img
-            style={{ width: "50px", height: "50px" }}
-            src={bugIcon}
-            alt="Bug"
-          />
-        );
-      case "dark":
-        return (
-          <img
-            style={{ width: "50px", height: "50px" }}
-            src={darkIcon}
-            alt="Dark"
-          />
-        );
-      case "dragon":
-        return (
-          <img
-            style={{ width: "50px", height: "50px" }}
-            src={dragonIcon}
-            alt="Dragon"
-          />
-        );
-      case "electric":
-        return (
-          <img
-            style={{ width: "50px", height: "50px" }}
-            src={electricIcon}
-            alt="Electric"
-          />
-        );
-      case "fairy":
-        return (
-          <img
-            style={{ width: "50px", height: "50px" }}
-            src={fairyIcon}
-            alt="Fairy"
-          />
-        );
-      case "fighting":
-        return (
-          <img
-            style={{ width: "50px", height: "50px" }}
-            src={fightingIcon}
-            alt="Fighting"
-          />
-        );
-      case "fire":
-        return (
-          <img
-            style={{ width: "50px", height: "50px" }}
-            src={fireIcon}
-            alt="Fire"
-          />
-        );
-      case "flying":
-        return (
-          <img
-            style={{ width: "50px", height: "50px" }}
-            src={flyingIcon}
-            alt="Flying"
-          />
-        );
-      case "ghost":
-        return (
-          <img
-            style={{ width: "50px", height: "50px" }}
-            src={ghostIcon}
-            alt="Ghost"
-          />
-        );
-      case "grass":
-        return (
-          <img
-            style={{ width: "50px", height: "50px" }}
-            src={grassIcon}
-            alt="Grass"
-          />
-        );
-      case "ground":
-        return (
-          <img
-            style={{ width: "50px", height: "50px" }}
-            src={groundIcon}
-            alt="Ground"
-          />
-        );
-      case "ice":
-        return (
-          <img
-            style={{ width: "50px", height: "50px" }}
-            src={iceIcon}
-            alt="Ice"
-          />
-        );
-      case "normal":
-        return (
-          <img
-            style={{ width: "50px", height: "50px" }}
-            src={normalIcon}
-            alt="Normal"
-          />
-        );
-      case "poison":
-        return (
-          <img
-            style={{ width: "50px", height: "50px" }}
-            src={poisonIcon}
-            alt="Poison"
-          />
-        );
-      case "psychic":
-        return (
-          <img
-            style={{ width: "50px", height: "50px" }}
-            src={psychicIcon}
-            alt="Psychic"
-          />
-        );
-      case "rock":
-        return (
-          <img
-            style={{ width: "50px", height: "50px" }}
-            src={rockIcon}
-            alt="Rock"
-          />
-        );
-      case "steel":
-        return (
-          <img
-            style={{ width: "50px", height: "50px" }}
-            src={steelIcon}
-            alt="Steel"
-          />
-        );
-      case "water":
-        return (
-          <img
-            style={{ width: "50px", height: "50px" }}
-            src={waterIcon}
-            alt="Water"
-          />
-        );
-      default:
-        return null;
-    }
-  };
+  const iconUrl = iconTipo(primaryType);
 
   const vida = pokemonUnico.stats.find(
     (stat) => stat.stat.name === "hp"
@@ -259,7 +92,14 @@ const DetalleScreen = () => {
           <h6 className="fs-32">
             #{pokemonUnico.id} {pokemonUnico.name}
           </h6>
-          <h5 className="mt-3">{iconTipo()}</h5>
+          <h5 className="mt-3">
+            {" "}
+            <img
+              style={{ width: "50px", height: "50px" }}
+              src={iconUrl}
+              alt={primaryType}
+            />
+          </h5>
         </article>
         <article>
           <div className="d-flex flex-wrap justify-content-center pb-4">
