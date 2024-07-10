@@ -71,9 +71,21 @@ const ListaPokemon = () => {
 
     content = (
       <>
-        <section className="container">
-          <Form.Group controlId="filtroTipo">
+        <section className="container d-flex flex-wrap justify-content-around pb-4">
+          <Form.Group controlId="filtroNombre">
+            <Form.Label className="fs-18">Buscar por pokemon</Form.Label>
             <Form.Control
+              type="text"
+              className="input-buscar"
+              placeholder="Buscar"
+              value={filtroNombre}
+              onChange={handleNombreChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="filtroTipo">
+            <Form.Label className="fs-18">Filtrar por tipo</Form.Label>
+            <Form.Control
+              className="input-buscar"
               as="select"
               value={filtroTipo}
               onChange={handleTipoChange}
@@ -86,21 +98,12 @@ const ListaPokemon = () => {
               ))}
             </Form.Control>
           </Form.Group>
-
-          <Form.Group controlId="filtroNombre" className="mt-3">
-            <Form.Control
-              type="text"
-              placeholder="Buscar por nombre"
-              value={filtroNombre}
-              onChange={handleNombreChange}
-            />
-          </Form.Group>
         </section>
 
         <Container>
           <Row xs={1} lg={3} md={2} sm={1}>
             {limitarPokemons.map((pokemon, id) => (
-              <Col key={id}>
+              <Col className="d-flex justify-content-center" key={id}>
                 <CardPokemon pokemon={pokemon} />
               </Col>
             ))}
@@ -121,12 +124,7 @@ const ListaPokemon = () => {
     content = <p>{error}</p>;
   }
 
-  return (
-    <div className="py-4">
-      <h6 className="text-center">Lista de Pokémon</h6>
-      {content}
-    </div>
-  );
+  return <div className="py-4">{content}</div>;
 };
 
 export default ListaPokemon;

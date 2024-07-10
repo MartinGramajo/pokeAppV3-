@@ -8,23 +8,66 @@
   font-weight: bold;
 }
 
+.fs-18 {
+  font-size: 18px !important;
+  font-weight: bold;
+}
+
 .fs-22 {
   font-size: 22px !important;
+}
+
+.fs-32 {
+  font-size: 32px !important;
+  font-weight: bold;
 }
 
 .logo {
   width: 150px;
 }
 
+.input-buscar {
+  border-radius: 40px !important;
+  width: 350px !important;
+}
+
 .card-pokemon {
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.498);
   text-align: center;
   margin: 1rem;
   overflow: hidden;
   position: relative;
-  background-color: var(--type-color);
-  width: 20rem !important;
+  background: rgb(178, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(178, 255, 255, 1) 0%,
+    rgba(152, 255, 255, 1) 15%,
+    rgba(127, 255, 255, 1) 30%,
+    rgba(101, 255, 255, 1) 45%,
+    rgba(76, 255, 255, 1) 60%,
+    rgba(50, 255, 255, 1) 75%,
+    rgba(25, 255, 255, 1) 90%,
+    rgba(0, 255, 255, 1) 100%
+  );
+  border-radius: 10px;
+  width: 18rem !important;
+}
+
+.metallic-card {
+  background: rgb(119, 108, 187);
+  background: -moz-linear-gradient(90deg, rgba(119, 108, 187, 1) 0%, rgba(119, 108, 187, 1) 50%, rgba(0, 0, 0, 1) 100%);
+  background: -webkit-linear-gradient(
+    90deg,
+    rgba(119, 108, 187, 1) 0%,
+    rgba(119, 108, 187, 1) 50%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  background: linear-gradient(90deg, rgba(119, 108, 187, 1) 0%, rgba(119, 108, 187, 1) 50%, rgba(0, 0, 0, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#776cbb",endColorstr="#000000",GradientType=1);
+  border-radius: 10px; /* Para bordes redondeados, opcional */
+  padding: 20px; /* Espaciado interno, opcional */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para efecto de elevación, opcional */
 }
 
 .hp {

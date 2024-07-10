@@ -57,7 +57,7 @@ export default function CardPokemon({ pokemon }) {
             </h6>
           </div>
         </section>
-        <section className="py-4">
+        <section className="pb-4">
           <Button
             className="btn-detalle-pokemon border-0 mt-4"
             as={Link}

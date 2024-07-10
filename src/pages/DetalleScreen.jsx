@@ -36,28 +36,23 @@ const DetalleScreen = () => {
   const { name } = useParams();
   const dispatch = useDispatch();
   const pokemonUnico = useSelector((state) => state.pokemon.poke);
+  console.log("DetalleScreen ~ pokemonUnico:", pokemonUnico);
 
   useEffect(() => {
     dispatch(getPokemon(name));
   }, [dispatch, name]);
 
-  // Verificación de datos
   if (!pokemonUnico || !pokemonUnico.stats || !pokemonUnico.types) {
-    return <div>Loading...</div>;
+    return (
+      <section className="text-center">
+        <img
+          className="w-25"
+          src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/029b8bd9-cb5a-41e4-9c7e-ee516face9bb/dayo3ow-7ac86c31-8b2b-4810-89f2-e6134caf1f2d.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzAyOWI4YmQ5LWNiNWEtNDFlNC05YzdlLWVlNTE2ZmFjZTliYlwvZGF5bzNvdy03YWM4NmMzMS04YjJiLTQ4MTAtODlmMi1lNjEzNGNhZjFmMmQuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.ooubhxjHp9PIMhVxvCFHziI6pxDAS8glXPWenUeomWs"
+          alt="poke loader gif"
+        />
+      </section>
+    );
   }
-
-  const vida = pokemonUnico.stats.find(
-    (stat) => stat.stat.name === "hp"
-  ).base_stat;
-  const ataque = pokemonUnico.stats.find(
-    (stat) => stat.stat.name === "attack"
-  ).base_stat;
-  const defensa = pokemonUnico.stats.find(
-    (stat) => stat.stat.name === "defense"
-  ).base_stat;
-  const velocidad = pokemonUnico.stats.find(
-    (stat) => stat.stat.name === "speed"
-  ).base_stat;
 
   const primaryType = pokemonUnico.types[0].type.name;
 
@@ -212,80 +207,76 @@ const DetalleScreen = () => {
     }
   };
 
+  const vida = pokemonUnico.stats.find(
+    (stat) => stat.stat.name === "hp"
+  ).base_stat;
+  const ataque = pokemonUnico.stats.find(
+    (stat) => stat.stat.name === "attack"
+  ).base_stat;
+  const defensa = pokemonUnico.stats.find(
+    (stat) => stat.stat.name === "defense"
+  ).base_stat;
+  const velocidad = pokemonUnico.stats.find(
+    (stat) => stat.stat.name === "speed"
+  ).base_stat;
+  const experiencia = pokemonUnico.base_experience;
+  const peso = pokemonUnico.weight;
+  const altura = pokemonUnico.height;
+
   const data = [
-    { name: "speed", value: velocidad, fill: "#4287f5" },
-    { name: "Def", value: defensa, fill: "#f54242" },
-    { name: "Ata", value: ataque, fill: "#42f554" },
     { name: "hp", value: vida, fill: "#42f5ce" },
+    { name: "Ata", value: ataque, fill: "#42f554" },
+    { name: "Def", value: defensa, fill: "#f54242" },
+    { name: "speed", value: velocidad, fill: "#4287f5" },
+    { name: "exp", value: experiencia, fill: "#445678" },
+    { name: "peso", value: peso, fill: "#413678" },
+    { name: "altura", value: altura, fill: "#253732" },
   ];
 
   return (
     <Container>
       <section className="pt-4">
         <article className="text-center">
-          <h6 className="fs-22">
-            {pokemonUnico.name} #{pokemonUnico.id}
+          <h6 className="fs-32">
+            #{pokemonUnico.id} {pokemonUnico.name}
           </h6>
-          <h5 className="${primaryType}">{iconTipo()}</h5>
+          <h5>{iconTipo()}</h5>
         </article>
         <article>
-          <div className="d-flex flex-wrap  justify-content-center">
-            <div className={`card-pokemon ${primaryType}`}>
+          <div className="d-flex flex-wrap  justify-content-center py-4">
+            <div className="card-pokemon">
               <img
                 style={{ width: "300px", height: "300px" }}
                 src={pokemonUnico.sprites.front_default}
                 alt={pokemonUnico.name}
               />
-              <h6> Apariencia Base</h6>
             </div>
-            <div className={`card-pokemon ${primaryType}`}>
+            <div className="card-pokemon">
+              <img
+                style={{ width: "300px", height: "300px" }}
+                src={pokemonUnico.sprites.back_default}
+                alt={pokemonUnico.name}
+              />
+            </div>
+            <div className="card-pokemon">
               <img
                 style={{ width: "300px", height: "300px" }}
                 src={pokemonUnico.sprites.front_shiny}
                 alt={pokemonUnico.name}
               />
-              <h6> Apariencia Shiny</h6>
             </div>
-            <h6 className="text-center">{pokemonUnico.species.description}</h6>
+            <div className="card-pokemon">
+              <img
+                style={{ width: "300px", height: "300px" }}
+                src={pokemonUnico.sprites.back_shiny}
+                alt={pokemonUnico.name}
+              />
+            </div>
+            <h6 className=" fs-18">{pokemonUnico.species.description}</h6>
           </div>
-        </article>
-        <article className="mt-5">
-          <div className="text-center">
-            <h6 className="fs-22">Estadísticas base</h6>
-          </div>
-          <section className="d-flex justify-content-around flex-wrap py-5">
-            <div className="pokemon-stats">
-              <div className="stat">
-                <span className="stat-name">Attack</span>
-              </div>
-              <span className="stat-value">{ataque}</span>
-              <div className="stat">
-                <span className="stat-name">Defense</span>
-              </div>
-              <span className="stat-value">{defensa}</span>
-              <div className="stat">
-                <span className="stat-name">Speed</span>
-              </div>
-              <span className="stat-value">{velocidad}</span>
-            </div>
-            <div className="pokemon-stats">
-              <div className="stat">
-                <span className="stat-name">Experiencia base</span>
-              </div>
-              <span className="stat-value">{pokemonUnico.base_experience}</span>
-              <div className="stat">
-                <span className="stat-name">Peso</span>
-              </div>
-              <span className="stat-value">{pokemonUnico.weight}Kg</span>
-              <div className="stat">
-                <span className="stat-name">Altura</span>
-              </div>
-              <span className="stat-value">{pokemonUnico.height}m</span>
-            </div>
-          </section>
         </article>
         <article>
-          <h6 className="fs-22 text-center mt-4">Gráfica</h6>
+          <h6 className="fs-32 text-center my-4">Estadísticas base</h6>
           <div>
             <div className="d-flex justify-content-center">
               <article className="d-none d-lg-block">
@@ -298,18 +289,43 @@ const DetalleScreen = () => {
                   <Bar dataKey="value" fill="#8884d8" />
                 </BarChart>
               </article>
-
-              <article className="d-lg-none d-block ">
-                <BarChart width={340} height={400} data={data}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="value" fill="#8884d8" />
-                </BarChart>
-              </article>
             </div>
+            <article className="d-lg-none d-block pb-5">
+              <section className="container">
+                <div className="d-flex justify-content-around flex-wrap">
+                  <article>
+                    <div className="stat">
+                      <span className="stat-name">Experiencia base</span>
+                    </div>
+                    <span className="stat-value">
+                      {pokemonUnico.base_experience}
+                    </span>
+                    <div className="stat">
+                      <span className="stat-name">Peso</span>
+                    </div>
+                    <span className="stat-value">{pokemonUnico.weight}Kg</span>
+                    <div className="stat">
+                      <span className="stat-name">Altura</span>
+                    </div>
+                    <span className="stat-value">{pokemonUnico.height}m</span>
+                  </article>
+                  <article>
+                    <div className="stat">
+                      <span className="stat-name">Attack</span>
+                    </div>
+                    <span className="stat-value">{ataque}</span>
+                    <div className="stat">
+                      <span className="stat-name">Defense</span>
+                    </div>
+                    <span className="stat-value">{defensa}</span>
+                    <div className="stat">
+                      <span className="stat-name">Speed</span>
+                    </div>
+                    <span className="stat-value">{velocidad}</span>
+                  </article>
+                </div>
+              </section>
+            </article>
           </div>
         </article>
       </section>
