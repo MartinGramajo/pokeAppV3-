@@ -41,7 +41,7 @@ export default function CardPokemon({ pokemon }) {
         </Card.Body>
         <section className="d-flex  justify-content-center">
           <Button
-            className=""
+            className="d-flex"
             onClick={handleFavoritoClick}
             style={{ cursor: "pointer", background: "none", border: "none" }}
           >
@@ -50,12 +50,12 @@ export default function CardPokemon({ pokemon }) {
               src={esFavorito ? starFilled : starEmpty}
               alt={esFavorito ? "Remover de favoritos" : "Agregar a favoritos"}
             />{" "}
+            <div className="ms-2">
+              <h6 className={esFavorito ? "text-dark" : "text-white"}>
+                {esFavorito ? "Remover de favoritos" : "Agregar a favoritos"}
+              </h6>
+            </div>
           </Button>
-          <div className="mt-2">
-            <h6>
-              {esFavorito ? "Remover de favoritos" : "Agregar a favoritos"}
-            </h6>
-          </div>
         </section>
         <section className="pb-4">
           <Button
